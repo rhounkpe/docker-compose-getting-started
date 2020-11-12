@@ -5,7 +5,7 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "5000:${WEB_PORT}"
     # The volumes key mounts the project directory (current directory) on the host to /code
     # inside the container, allowing you to modify the code on the fly, without having to rebuild the image.
     volumes:
@@ -13,7 +13,7 @@ services:
     environment:
       # The environment key sets the FLASK_ENV environment variable, 
       # which tells 'flask run' to run in development mode and reload the code on change.
-      FLASK_ENV: development
+      FLASK_ENV: ${FLASK_ENV}
   # The redis service uses a public Redis image pulled from the Docker Hub registry.
   redis:
-    image: "redis:alpine"
+    image: "${REDIS_IMAGE}"

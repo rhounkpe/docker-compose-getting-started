@@ -1,10 +1,12 @@
 # Build an image starting with the Python 3.7 image.
 FROM python:3.7-alpine
+#
+RUN pip install python-dotenv
 # Set the working directory to /code
 WORKDIR /code
 # Set environment variables used by the flask command.
-ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_APP=${FLASK_APP}
+ENV FLASK_RUN_HOST=${FLASK_RUN_HOST}
 # Install gcc and other dependencies
 RUN apk add --no-cache gcc musl-dev linux-headers
 # Copy requirements.txt and install the Python dependencies.

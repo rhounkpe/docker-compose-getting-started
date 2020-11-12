@@ -1,0 +1,5 @@
+__pycache__/
+.env.ci
+.env.dev
+.env.prod
+.env.staging
