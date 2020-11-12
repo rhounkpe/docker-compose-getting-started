@@ -1,12 +1,19 @@
 version: "3.8"
 services:
+  # The web service uses an image that’s built from the Dockerfile in the current directory.
+  # It then binds the container and the host machine to the exposed port, 5000
   web:
     build: .
     ports:
       - "5000:5000"
+    # The volumes key mounts the project directory (current directory) on the host to /code
+    # inside the container, allowing you to modify the code on the fly, without having to rebuild the image.
     volumes:
       - .:/code
     environment:
+      # The environment key sets the FLASK_ENV environment variable, 
+      # which tells 'flask run' to run in development mode and reload the code on change.
       FLASK_ENV: development
+  # The redis service uses a public Redis image pulled from the Docker Hub registry.
   redis:
     image: "redis:alpine"
